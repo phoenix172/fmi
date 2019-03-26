@@ -1,0 +1,214 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[english,bulgarian]{babel}
+\usepackage{mathtools}
+\setlength{\parindent}{0pt}
+
+\newcommand\isimplies{\stackrel{\mathclap{\normalfont\mbox{?}}}{\rightarrow}}
+\newcommand\sland{\;\land\;}
+\newcommand\slor{\;\lor\;}
+\newcommand\nat{\mathbb{N}}
+\newcommand\natp{\nat ^+}
+\newcommand\ints{\mathbb{Z}}
+\newcommand\iseven{\equiv 0 \;(mod \;2)}
+
+
+\title{Домашно №1 по Дискр. Стр-ри, спец. Информатика, летен семестър 2018/2019 г.}
+\author{Иван Йочев, спец. Информатика, 5-та група}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Задача 1}
+
+S = $\emptyset$ \\
+P - едноместен предикат над S \\
+P - силен $\leftrightarrow \exists x\;(P(x)) \rightarrow \forall y\;(P(y))$ \\
+Да се докаже, че $\forall P : P$ - силен $\forall x \forall y\;(P(x)\leftrightarrow P(y))$\\
+
+$\forall P\;(\;\exists x(P(x)) \; \forall y(P(y))\;) \isimplies \forall x \forall y \; (P(x) \iff P(x))$ \\ \\
+$(a \rightarrow b) \leftrightarrow (\neg a \lor b)$ \\ \\
+$\forall P \; A(B) \rightarrow B(P)$ \\
+$A(P) \rightarrow B(P)$ \\ \\
+$\Rightarrow \; A(P) \leftrightarrow \; \neg (\exists x P(x)) \lor (\forall y P(y))$ \\
+$\iff [\forall x(\neg P(x))] \lor [\forall y P(y)]$ \\
+$\iff \forall x \; P(x) \lor \neg P(y)$ \\
+
+$B(P) \leftrightarrow \forall x \forall y \; [P(x) \leftrightarrow P(y)]$\\
+$\iff \forall x \forall y \; [P(x) \leftrightarrow P(y)]$ \\
+$\iff \forall x \forall y \; [(P(x) \land P(y)) \lor (\neg P(x) \land \neg P(y))]$ \\
+$\iff \forall x \; (P(x) \lor \neg P(x))$ \\
+
+$A(P) \rightarrow B(P)$ \\
+$\implies \forall P : P$ - силен $\rightarrow \forall x \forall y \; (P(x) \leftrightarrow P(y))$
+
+\subsection*{Задача 2}
+A,B,C - множества \\
+$X = (A \cup A) \times (C \cap D)$ \\
+$Y = [(A \times C)\cap(A \times D)] \cup [(B \times C) \cap (B \times D)]$ \\ \\
+Да се докаже, че $X = Y$ \\
+
+\subsubsection*{I:  $X \subseteq Y$}
+
+$(a_1 , a_2) = a \in X \rightarrow a \in [(A \times B) \times (C \cap D)]$ \\
+$\iff (a_1 \in (A \cup B)) \land (a_2 \in (C \cap D))$ \\
+$\implies (a_1 \in A \lor a_1 \in B) \land (a_2 \in C \land a_2 \in D)$ \\
+$\implies (a_1 \in A \land a_2 \in C \land a_2 \in D) \lor (a_1 \in B \land a_2 \in C \land a_2 \in D)$ \\
+$\implies [a=(a_1,a_2) \in (A \times C) \land a \in (A \times D)] \lor [a \in (B \times C) \land a \in (B \times D)]$ \\
+$\implies a \in [(A \times C) \cap (A \times D)] \lor a \in [(B \times C)\cap(B \times D)]$ \\
+$\implies a \in [(A \times C) \cap (A \times D)] \cup [(B \times C) \cap (B \times D)]$ \\
+$\implies X \subset Y$
+
+\subsubsection*{II:  $X \supseteq Y$}
+
+$(a_1,a_2) = a \in X \rightarrow a \in[(A \times C) \cap (A \times D)] \cup [(B \times C)\cap(B \times D)]$ \\
+$\implies a \in [(A \times C) \ cap (A \times D)]] \;\lor\; a \in [(B \times C)\cap(B \times D)]$ \\
+$\implies a \in [(A \times C) \cap (A \times D)] \;\lor\; a \in[(B \times C)\cap(B \times D)]$ \\
+$\implies [a \in (A \times C) \;\land\; a \in (A \times D)]\lor[a \in[(B \times C) \land a \in(B\times D)]]$\\
+
+$\begin{aligned}
+	 \implies &[a_1 \in A \sland a_2 \in C \sland a_1 \in A \sland a_2 \in D] \slor \\
+				&[a_1 \in B \sland a_2 \in C \sland a_1 \in B \sland a_2 \in D] 
+\end{aligned}$ \\
+$\implies [a_1 \in A \sland a_2 \in C \sland a_2 \in D] \slor [a_1 \in B \sland a_2 \in C \sland a_2 \in D]$\\
+$\implies [a_1 \in A \sland a_2\in(C \cap D)]\slor[a_1\in B \sland a_2 \in C \sland a_2) \in D]$ \\
+$\implies [a_1 \in A \slor a_2 \in B] \sland a_2 \in (C \cap D)$ \\
+$\implies a_1 \in (A\cup B) \sland a_2 \in (C\cap D)$ \\
+$\implies (a_1, a_2)=a \in [(A \cup B )\times (c \cap D)]$ \\
+
+$(X \supseteq Y) \land (X \subseteq Y) \rightarrow X=Y$\\
+
+\subsection*{Задача 3}
+
+$\natp = \nat \setminus\{0\}$\\
+$R \subseteq \natp \times \natp$ \\
+$x\;R\;y \leftrightarrow \exists k \in \mathbb{Z}, n\in N : \frac{x}{y} = 2^k \sland xy=n^2$\\
+
+\subsubsection*{I. Рефлексивност}
+
+$x \in \natp \isimplies xRx$\\
+
+$
+	\begin{aligned}
+(1) \quad &\frac{x}{x}=2^k=1 \rightarrow k=0\\
+\implies &k=0\in\ints \rightarrow xRx \\ \\
+(2) \quad & x^2=n^2 \rightarrow x=n \\
+\implies &(n=x \in \natp \subset \nat) \rightarrow n \in \nat \\ \\
+(1) \sland& (2) \implies \text{Рефлексивност}
+	\end{aligned}
+$
+
+\subsubsection*{II. Симетричност}
+
+$
+x,y \in \natp \\
+xRy \isimplies yRx \\ \\
+\begin{aligned}
+(1) \quad &\frac{x}{y} = 2^k \sland xy=n^2 \sland k \in \ints \sland n \in \nat \\
+\implies &\frac{y}{x} = \frac{1}{2^k}=2^{-k} \rightarrow -k \in \ints \\
+\implies &k \in \ints \\ \\
+(2) \quad &xy=n^2 \rightarrow yx = n^2 \\
+\implies &n \in \nat
+ \\ \\
+ (1) \sland& (2) \implies \text{Симетричност}
+  \end{aligned}
+$
+
+\subsubsection*{III. Транзитивност}
+
+$
+	\frac{a}{b} = 2^k \qquad \frac{b}{c} = 2^l \\	
+	ab=n^2 \qquad bc=m^2 \\ \\
+	\frac{a}{b} b^2 = n^2 \\
+	2^kb^2=n^2 \\
+	n \in \nat \rightarrow 2^{\frac{k}{2}}b = n \in \nat \\
+	\implies k \iseven \\ \\
+	\frac{b}{c} c^2 = m^2 \\
+	2^lc^2=m^2 \\
+	m \in \nat \rightarrow 2^{\frac{l}{2}}c = m \in \nat \\
+	\implies l \iseven \\ \\
+	abbc = n^2m^2 \\
+	ac = \frac{n^2m^2}{b^2} = \frac{abbc}{b^2}=\frac{a}{b}.\frac{c}{b}.b^2 = 2^{k-l}b^2 = (2^{\frac{k-l}{2}}b)^2 \\
+	\implies (k \iseven) \land (l \iseven) \rightarrow (k-l \iseven) \\
+	\implies  k-l \in \ints \\
+	\implies БОО k > l (R е симетрична) \\
+	\implies \frac{k-l}{2} \in \nat -> 2^{\frac{k-l}{2}} \in \nat \\
+	\implies b \in \natp \rightarrow 2^{\frac{k-l}{2}}.b \in \nat \\
+	\implies \text{Транзитивност} \\\\ $
+	От (I),(II) и (III) следва, че R е релация на еквивалентност
+	
+\subsection*{Задача 4}
+
+\subsubsection*{I: $f \cap g$ - частична}
+
+Допускаме, че $f \cap g$ не е частична \\
+$
+\implies \exists a \in A \; \exists b,c \in B, b \neq c : (a,b) \in f \cap g \sland (a,c) \in f \cap g \\
+\implies (a,b) \in f \cap g \sland (a,c) \in f\cap g \\
+\implies (a,b) \in f \sland (a,b) \in g \sland (a,c) \in f \sland (a,c) \in g \sland b \neq c \\
+\implies$ f и g не са функции \\
+$\implies$ противоречие с условието \\
+$\implies f \cap g$ е частична \\
+
+\subsubsection*{II: $f \cap g$ - тотална}
+
+Ако f=g \\
+$\implies f \cap g = f$ - функция \\
+$\implies f \cap g$ е функция \\
+
+Нека $f \neq g$ \\
+Допускаме, че $f \cap g$ е тотална \\
+$\implies \forall a \in A \; \exists b \in B: (a,b) \in f \cap g$ \\
+$\implies (a,b) \in f \sland (a,b) \in g$\\
+$\implies \forall a \in A f(a)=g(a) \leftrightarrow f=g$\\
+$\implies$ противоречие с $f \neq g$\\
+$\implies f \cap g$ не е тотална\\
+
+\subsubsection*{III: $f \subseteq g \isimplies f \cup g$ - функция}
+
+$f \subseteq g \rightarrow f \cup g = f$\\
+f e тотална $\implies f\cup g $ е тотална \\
+
+\subsubsection*{IV: $f \cup g$ - функция}
+Допускаме, че $f \cup g$ е функция \\
+$
+\implies \forall a \in A (\exists b \in B \; (a,b) \in f) \rightarrow (\forall c \in B \; (a,c) \notin g \slor b = c) \\
+\implies \forall a \in A (\forall b \in B \; (a,b) \notin f) \slor (\forall c \in B \; (a,c) \notin g \slor b=c) \\
+\implies \forall a \in A \; \forall b,c \in B \; (a,b) \notin f \slor (a,c) \notin g \slor b=c \\
+\implies$ f не е дефинирана $\forall a \in A$, или g не е дефинирана $\forall a \in A$, или f=g \\
+$\implies$ f не е функция, или g не е функция, или f=g \\
+$\implies (f \cup g)$ е функция $ \leftrightarrow (f = g)$\\
+
+\subsubsection*{V: h е функция}
+$
+\forall n \in \nat f_n: \nat \rightarrow \nat \\
+f_n(x)= \begin{aligned}\begin{cases} 
+x, \; &x \leq n \\
+$недефинирана, $&$в противен случай$
+\end{cases}\end{aligned} \\
+h = \bigcup\limits_{i=1}^{\infty} f_{i}
+$\\\\
+Да се докаже, че h е функция\\
+$
+f_0(x)= \begin{aligned}\begin{cases} 
+0, \; &x = 0 \\
+$недефинирана, $&$в противен случай$
+\end{cases}\end{aligned} \\
+\forall f_i, \; i \in I_n \; f_i=f_{i-1} \cup \{(i,i)\}\\
+\implies \forall f_i \; f_i \subseteq f_{i+1} \;, i \in \nat \\
+\implies \forall f_i \; f_i \cup f_{i+1} = f_{i+1} \\
+\implies k\in \nat \cup \{\infty\}, \; \bigcup\limits_{i=0}^{k} f_i = f_k \\
+\implies \forall x \in \nat, \; x \leq k f_k(x) = x \\
+\implies f_k = \bigcup\limits_{i=1}^{\infty}f_i = h$ \\
+Нека k=$\infty$. Тогава $\forall x \in \nat, \; f_k(x)=x$ \\
+$\implies$ h е дефинирана $\forall x < \infty , \; x \in \nat$ и h(x)=x\\
+$\implies \forall a \in \nat \;(\exists b \in \nat \; (a,b) \in h) \sland (\exists c \in \nat \; (a,c) \in h \rightarrow b=c)$ \\
+$\implies$ h e функция\\
+
+\end{document}
